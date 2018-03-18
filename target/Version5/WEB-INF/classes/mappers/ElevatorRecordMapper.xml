@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ElevatorRecordMapper">
+<insert id="add" parameterType="EleRBean" useGeneratedKeys="true" keyProperty="id">
+    insert into eleR
+       (Rid,Rpropright,Rdevicename,Rformat,Rmanunumber,Rmanufac,Rdutyman,Rmachiner,Rphone,Rcasenumber,Rmanutime,
+    Refftime,Rcasetime,Rremark,Rtime,Ruserid,Rusername)
+    VALUES
+    (#{Rid},#{Rpropright},#{Rdevicename},#{Rformat},#{Rmanunumber},#{Rmanufac},#{Rdutyman},#{Rmachiner},#{Rphone},
+    #{Rcasenumber},#{Rmanutime},#{Refftime},#{Rcasetime},#{Rremark},#{Rtime},#{Ruserid},#{Rusername})
+</insert>
+
+    <select id="query" resultType="EleRBean">
+        select * from eleR
+    </select>
+
+
+    <select id="queryById" resultType="EleRBean" parameterType="java.lang.Integer">
+        select * from eleR where Rid=#{Rid}
+    </select>
+</mapper>

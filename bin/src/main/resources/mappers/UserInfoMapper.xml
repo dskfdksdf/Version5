@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.UserMapper">
+	<resultMap type="UserBean" id="UserInfoMap">
+		<id property="id" column="id" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="roleId" column="role" />
+		<association  property="role" javaType="RoleInfoBean" >
+			<id property="roleId" column="id" />
+			<result property="rolename" column="role_name" />
+		</association>
+	</resultMap>
+<!-- <association property="role" select="queryRoleInfoById"
+			column="role">
+			<id property="roleId" column="role" />
+			<result property="rolename" column="role_name" />
+		</association> -->
+<resultMap type="UserBean" id="UserInfoMap2">
+		<id property="id" column="id" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="roleId" column="role" />
+	</resultMap>
+
+	<!-- 用户登录 id与方法名相同 -->
+	<select id="validateUser" resultMap="UserInfoMap" parameterType="UserBean">
+		SELECT * FROM User WHERE id=#{id} and password=#{password}
+	</select>
+	<!-- 查询所有 -->
+	<select id="queryUser" resultType="UserBean">
+		select * from user
+	</select>
+	<!-- 查询用户角色 -->
+	<select id="queryRoleInfoById" resultType="RoleInfoBean">
+		SELECT id,role_name  FROM role_info WHERE id=#{roleId}
+	</select>
+
+	<!-- 检测用户是否重复 注册时使用 -->
+	<select id="checkUser" resultType="int" parameterType="UserBean">
+		SELECT
+		count(*) FROM User WHERE id=#{id}
+	</select>
+
+	<!-- 插入用户 -->
+	<insert id="insertUser" parameterType="UserBean"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user
+		(username,password,role) values
+		(#{username},#{password},#{roleId})
+
+	</insert>
+
+
+</mapper>

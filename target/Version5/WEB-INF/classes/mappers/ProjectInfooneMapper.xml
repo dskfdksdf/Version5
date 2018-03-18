@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ProjectInfooneMapper">
+	<resultMap type="ProjectoneBean" id="projectoneMap">
+
+	</resultMap>
+	<!-- <id property="proid" column="proid"></id> -->
+	<!-- <result property="proname" column="proname" ></result> -->
+	<!-- <result column="promonitorid" property="promonitorid"></result> <result 
+		column="promonitorStr" property="promonitorStr"></result> <result column="prostructure" 
+		property="prostructure"></result> <result column="proarea" property="proarea"></result> 
+		<result column="proprice" property="proprice"></result> <result column="prostate" 
+		property="prostate"></result> <result column="proprocess" property="proprocess"></result> 
+		<result column="proslice" property="proslice"></result> <result column="proaddress" 
+		property="proaddress"></result> <result column="proconfactoryid" property="proconfactoryid"></result> 
+		<result column="proconfactoryStr" property="proconfactoryStr"></result> <result 
+		column="probemanageid" property="probemanageid"></result> <result column="probemanageStr" 
+		property="probemanageStr"></result> <result column="proconfactoryid1" property="proconfactoryid1"></result> 
+		<result column="proconfactoryStr1" property="proconfactoryStr1"></result> 
+		<result column="probemanageid1" property="probemanageid1"></result> <result 
+		column="probemanageStr1" property="probemanageStr1"></result> <result column="proconfactoryid2" 
+		property="proconfactoryid2"></result> <result column="proconfactoryStr2" 
+		property="proconfactoryStr2"></result> <result column="probemanageid2" property="probemanageid2"></result> 
+		<result column="probemanageStr2" property="probemanageStr2"></result> <result 
+		column="towerid" property="towerid"></result> <result column="towerStr" property="towerStr"></result> 
+		<result column="elevatorid" property="elevatorid"></result> <result column="elevatorStr" 
+		property="elevatorStr"></result> <result column="mateeleid" property="mateeleid"></result> 
+		<result column="mateeleStr" property="mateeleStr"></result> <result column="otherdeviceid" 
+		property="otherdeviceid"></result> <result column="otherdeviceStr" property="otherdeviceStr"></result> 
+		<result column="proenforce" property="proenforce"></result> <result column="proevaluateself" 
+		property="provaluateself"></result> <result column="proevaluateall" property="proevaluateall"></result> 
+		<result column="proevaluatelevel" property="proevaluatelevel"></result> <result 
+		column="proextrainfo" property="proextrainfo"></result> -->
+	<!-- <result column="prophoto" property="prophoto"></result> -->
+	<!-- <result column="prostarttime" property="prostarttime"></result> -->
+	<select id="queryProjectone" resultType="ProjectoneBean">
+		select * from projectone
+	</select>
+
+	<select id="queryProjectone1" resultType="ProjectoneBean">
+		select * from projectone where proid1=1
+	</select>
+
+	<select id="queryProjectone2" resultType="ProjectoneBean">
+		select * from projectone where proid2=2
+	</select>
+
+	<select id="queryById" parameterType="ProjectoneBean" resultType="ProjectoneBean">
+		select * from projectone where proid=#{proid}
+	</select>
+
+
+	<insert id="add" parameterType="ProjectoneBean"
+		useGeneratedKeys="true" keyProperty="proid">
+		insert into projectone
+		(proname,promonitorStr,prostructure,proarea,proprice,prostate,proprocess,
+		proslice,proaddress,proconfactoryid,proconfactoryStr,probemanageid,probemanageStr,
+		proconfactoryid1,proconfactoryStr1,probemanageid1,probemanageStr1,
+		proconfactoryid2,proconfactoryStr2,probemanageid2,probemanageStr2,towerStr,elevatorStr,mateeleStr,otherdeviceStr,
+		prostarttime,proenforce,proevaluateself,proevaluateall,proevaluatelevel,proextrainfo,
+		prouserid,prousername,prodate)
+		values
+		(#{proname},#{promonitorStr},#{prostructure},#{proarea},#{proprice},#{prostate},
+		#{proprocess},#{proslice},#{proaddress},
+		#{proconfactoryid},#{proconfactoryStr},#{probemanageid},#{probemanageStr},
+		#{proconfactoryid1},#{proconfactoryStr1},#{probemanageid1},#{probemanageStr1},
+		#{proconfactoryid2},#{proconfactoryStr2},#{probemanageid2},#{probemanageStr2},
+		#{towerStr},#{elevatorStr},#{mateeleStr},#{otherdeviceStr},#{prostarttime},#{proenforce},
+		#{proevaluateself},#{proevaluateall},#{proevaluatelevel},#{proextrainfo},
+		#{prouserid},#{prousername},#{prodate})
+	</insert>
+	<update id="update" parameterType="ProjectoneBean">
+		update projectone set
+		proname=#{proname},promonitorStr=#{promonitorStr},prostructure=#{prostructure},proarea=#{proarea},proprice=#{proprice},
+		prostate=#{prostate},proprocess=#{proprocess},proslice=#{proslice},proaddress=#{proaddress},
+		proconfactoryid=#{proconfactoryid},proconfactoryStr=#{proconfactoryStr},probemanageid=#{probemanageid},probemanageStr=#{probemanageStr},
+		proconfactoryid1=#{proconfactoryid1},proconfactoryStr1=#{proconfactoryStr1},probemanageid1=#{probemanageid1},probemanageStr1=#{probemanageStr1},
+		proconfactoryid2=#{proconfactoryid2},proconfactoryStr2=#{proconfactoryStr2},probemanageid2=#{probemanageid2},probemanageStr2=#{probemanageStr2},
+		towerStr=#{towerStr},elevatorStr=#{elevatorStr},
+		mateeleStr=#{mateeleStr},otherdeviceStr=#{otherdeviceStr},prostarttime=#{prostarttime},proenforce=#{proenforce},
+		proevaluateself=#{proevaluateself},proevaluateall=#{proevaluateall},proevaluatelevel=#{proevaluatelevel},
+		proextrainfo=#{proextrainfo} where proid=#{proid}
+	</update>
+	<update id="updateWeb" parameterType="ProjectoneBean" >
+		update projectone set
+		proname=#{proname},promonitorStr=#{promonitorStr},prostructure=#{prostructure},proarea=#{proarea},proprice=#{proprice},
+		prostate=#{prostate},proprocess=#{proprocess},proslice=#{proslice},proaddress=#{proaddress},
+		proconfactoryid=#{proconfactoryid},proconfactoryStr=#{proconfactoryStr},
+		probemanageid=#{probemanageid},probemanageStr=#{probemanageStr},
+		proconfactoryid1=#{proconfactoryid1},proconfactoryStr1=#{proconfactoryStr1},
+		probemanageid1=#{probemanageid1},probemanageStr1=#{probemanageStr1},
+		proconfactoryid2=#{proconfactoryid2},proconfactoryStr2=#{proconfactoryStr2},
+		probemanageid2=#{probemanageid2},probemanageStr2=#{probemanageStr2},
+		towerStr=#{towerStr},elevatorStr=#{elevatorStr},
+		mateeleStr=#{mateeleStr},otherdeviceStr=#{otherdeviceStr},prostarttime=#{prostarttime},proenforce=#{proenforce},
+		proevaluateself=#{proevaluateself},proevaluateall=#{proevaluateall},proevaluatelevel=#{proevaluatelevel},
+		proextrainfo=#{proextrainfo},prolukongdate=#{prolukongdate} where proid=#{proid}
+	
+	</update>
+
+
+
+	<update id="updatePart" parameterType="ProjectoneBean">
+		update projectone set
+		prostate=#{prostate} where proid=#{proid}
+	</update>
+	
+	<update id="savePhotoPath" parameterType="ProjectoneBean">
+		update projectone set tupath=#{tupath} where proid=#{proid}
+	</update>
+
+	<update id="updatestate" parameterType="ProjectoneBean">
+		update projectone set prorestate=#{prorestate} where proid=#{proid}
+	</update>
+
+	<update id="updateUrgent" parameterType="ProjectoneBean">
+		update projectone set prourgent=#{prourgent} where proid=#{proid}
+	</update>
+
+	<select id="queryByCondition" parameterType="java.util.Map"
+		resultType="ProjectoneBean">
+		SELECT * FROM projectone
+		<where>
+			<if test="proname != null and proname!=''">
+				AND proname = #{proname}
+			</if>
+			<if test="proaddress != null and proaddress!=''">
+				AND proaddress = #{proaddress}
+			</if>
+			<if test="promonitorStr != null and promonitorStr!=''">
+				AND promonitorStr = #{promonitorStr}
+			</if>
+		
+			<if test="prourgent != null and prourgent!=''">
+				AND prourgent = #{prourgent}
+			</if>
+		</where>
+		<if test="offset != null  and limit != null ">
+			LIMIT ${offset},${limit}
+		</if>
+	</select>
+
+	<select id="queryCount" resultType="java.lang.Integer">
+		select count(*) from projectone
+		<where>
+			<if test="proname != null and proname!=''">
+				AND proname = #{proname}
+			</if>
+			<if test="proaddress != null and proaddress!=''">
+				AND proaddress = #{proaddress}
+			</if>
+			<if test="promonitorStr != null and promonitorStr!=''">
+				AND promonitorStr = #{promonitorStr}
+			</if>
+			<if test="prourgent != null and prourgent!=''">
+				AND prourgent = #{prourgent}
+			</if>
+		</where>
+	</select>
+</mapper>

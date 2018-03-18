@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.BemanagedMapper">
+    <insert id="add" parameterType="BemanagedBean" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into bemanaged
+        (id,name,station,projectid,projectname,companyid,company,telephone)
+        VALUES
+        (#{id},#{name},#{station},#{projectid},#{projectname},#{companyid},#{company},#{telephone})
+    </insert>
+<select id="query" resultType="BemanagedBean">
+    select * from bemanaged
+</select>
+</mapper>

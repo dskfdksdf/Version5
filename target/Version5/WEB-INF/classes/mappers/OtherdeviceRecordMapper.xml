@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.OtherdeviceRecordMapper">
+
+    <insert id="add" parameterType="OthRBean" useGeneratedKeys="true" keyProperty="id">
+        insert into othR
+            (Rid,Rpropright,Rdevicename,Rformat,Rmanunumber,Rmanufac,Rdutyman,Rmachiner,Rphone,Rcasenumber,Rmanutime,
+    Refftime,Rcasetime,Rremark,Rtime,Ruserid,Rusername)
+    VALUES
+    (#{Rid},#{Rpropright},#{Rdevicename},#{Rformat},#{Rmanunumber},#{Rmanufac},#{Rdutyman},#{Rmachiner},#{Rphone},
+    #{Rcasenumber},#{Rmanutime},#{Refftime},#{Rcasetime},#{Rremark},#{Rtime},#{Ruserid},#{Rusername})
+    </insert>
+
+
+    <select id="query" resultType="MatRBean">
+        select * from othR
+    </select>
+
+    <select id="queryById" resultType="MatRBean" parameterType="java.lang.Integer">
+        select * from othR where Rid=#{Rid}
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ProjectInfooneRecordMapper">
+    <insert id="add" parameterType="ProjectoneRecordBean"
+            useGeneratedKeys="true" keyProperty="proRid">
+insert into projectoneRecord (proRproid,proRproname,proRpromonitorStr,proRprostructure,proRproarea,proRproprice,proRprostate,proRproprocess,
+proRproslice,proRproaddress,proRproconfactoryStr,proRprobemanageStr,proRproconfactoryStr1,proRprobemanageStr1,
+proRproconfactoryStr2,proRprobemanageStr2,proRtowerStr,proRelevatorStr,proRmateeleStr,proRotherdeviceStr,
+proRprostarttime,proRproenforce,proRproevaluateself,proRproevaluateall,proRproevaluatelevel,proRproextrainfo,
+proRuserid,proRusername,proRdate,proRtupath) values (#{proRproid},#{proRproname},#{proRpromonitorStr},#{proRprostructure},#{proRproarea},#{proRproprice},#{proRprostate},
+#{proRproprocess},#{proRproslice},#{proRproaddress},#{proRproconfactoryStr},#{proRprobemanageStr},
+#{proRproconfactoryStr1},#{proRprobemanageStr1},#{proRproconfactoryStr2},#{proRprobemanageStr2},
+#{proRtowerStr},#{proRelevatorStr},#{proRmateeleStr},#{proRotherdeviceStr},#{proRprostarttime},#{proRproenforce},
+#{proRproevaluateself},#{proRproevaluateall},#{proRproevaluatelevel},#{proRproextrainfo},
+#{proRuserid},#{proRusername},#{proRdate},#{proRtupath})		
+</insert>
+
+    <update id="savePhotoPath" parameterType="ProjectoneRecordBean">
+update projectoneRecord set proRtupath=#{proRtupath} where proRid=#{proRid}
+</update>
+
+    <select id="queryHistoryProjectone" resultType="ProjectoneRecordBean">
+select * from projectoneRecord
+</select>
+
+    <select id="queryById" resultType="ProjectoneRecordBean" parameterType="java.lang.Integer">
+select * from projectoneRecord where proRproid=#{proRproid}
+</select>
+
+</mapper>

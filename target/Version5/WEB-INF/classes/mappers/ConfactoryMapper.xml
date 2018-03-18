@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ConfactoryMapper">
+    <select id="query" resultType="ConfactoryBean">
+        select * from con_factory
+    </select>
+    <insert id="add" parameterType="ConfactoryBean" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into con_factory
+       (factoryname,standperson,phone,grade,number,member,time,userid,username,cancel)
+       VALUES
+       (#{factoryname},#{standperson},#{phone},#{grade},#{number},#{member},#{time},#{userid},#{username},#{cancel})
+    </insert>
+<update id="updateWeb" parameterType="ConfactoryBean">
+    update con_factory set
+    factoryname=#{factoryname},standperson=#{standperson},phone=#{phone},grade=#{grade},number=#{number},member=#{member},
+    cancel=#{cancel}
+    where id=#{id}
+</update>
+
+    <update id="update" parameterType="ConfactoryBean">
+        update con_factory set
+        factoryname=#{factoryname},standperson=#{standperson},phone=#{phone},grade=#{grade},number=#{number},member=#{member},
+        cancel=#{cancel}
+        where id=#{id}
+    </update>
+
+
+    <select id="queryById" parameterType="java.lang.Integer" resultType="ConfactoryBean">
+        select * from con_factory where id=#{id}
+    </select>
+
+
+    <select id="queryByCondition" parameterType="java.util.Map"
+            resultType="ConfactoryBean">
+        SELECT * FROM con_factory
+        <where>
+            <if test="factoryname != null and factoryname!=''">
+                AND factoryname = #{factoryname}
+            </if>
+            <if test="standperson != null and standperson!=''">
+                AND standperson = #{standperson}
+            </if>
+            <if test="phone != null and phone!=''">
+                AND phone= #{photo}
+            </if>
+
+            <if test="grade != null and grade!=''">
+                AND grade = #{grade}
+            </if>
+        </where>
+        <if test="offset != null  and limit != null ">
+            LIMIT ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from con_factory
+        <where>
+            <if test="factoryname != null and factoryname!=''">
+                AND factoryname = #{factoryname}
+            </if>
+            <if test="standperson != null and standperson!=''">
+                AND standperson = #{standperson}
+            </if>
+            <if test="phone != null and phone!=''">
+                AND phone = #{phone}
+            </if>
+            <if test="grade != null and grade!=''">
+                AND grade = #{grade}
+            </if>
+        </where>
+    </select>
+
+
+
+</mapper>

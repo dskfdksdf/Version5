@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.EnforceMapper">
+	<select id="query" resultType="EnforceBean">
+		select * from enforce_info
+	</select>
+	<insert id="add" parameterType="EnforceBean" useGeneratedKeys="true"
+		keyProperty="enid">
+		insert into enforce_info
+		(enzhenggaiid,enreid,enproid,enweifaobject,enweifatiaokuan,enweifaStr,enchufatiaokuan,enchufaStr,enuserid,enusername,endate)
+		values
+		(#{enzhenggaiid},#{enreid},#{enproid},#{enweifaobject},#{enweifatiaokuan},#{enweifaStr},#{enchufatiaokuan},#{enchufaStr},
+		#{enuserid},#{enusername},#{endate}
+		
+		
+		)
+	</insert>
+
+	<select id="queryByCondition" parameterType="java.util.Map"
+		resultType="EnforceBean">
+		SELECT * FROM enforce_info
+		<where>
+			<if test="enid != null and enid!=''">
+				AND enid = #{enid}
+			</if>
+			<if test="enreid != null and enreid!=''">
+				AND enreid = #{enreid}
+			</if>
+			<if test="enproid != null and enproid!=''">
+				AND enproid = #{enproid}
+			</if>
+			<if test="enzhenggaiid != null and enzhenggaiid!=''">
+				AND enzhenggaiid = #{enzhenggaiid}
+			</if>
+		</where>
+		<if test="offset != null  and limit != null ">
+			LIMIT ${offset},${limit}
+		</if>
+	</select>
+	<select id="queryCount" resultType="java.lang.Integer">
+		select count(*) from enforce_info
+		<where>
+			<if test="enid != null and enid!=''">
+				AND enid = #{enid}
+			</if>
+			<if test="enreid != null and enreid!=''">
+				AND enreid = #{enreid}
+			</if>
+			<if test="enproid != null and enproid!=''">
+				AND enproid = #{enproid}
+			</if>
+			<if test="enzhenggaiid != null and enzhenggaiid!=''">
+				AND enzhenggaiid = #{enzhenggaiid}
+			</if>
+		</where>
+	</select>
+
+
+
+
+</mapper>

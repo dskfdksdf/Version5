@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ProjectInfoMapper">
+	<!-- ProjectBeanMap和ProjectBeanMap2的区别 有没有注入List<ProimageBean> -->
+	<resultMap type="ProjectBean" id="ProjectBeanMap">
+		<id property="id" column="id" />
+		<result property="projectname" column="project_name" /><!-- 项目名 -->
+		<result property="execute" column="con_factory" /><!-- 施工单位 -->
+		<result property="structure" column="structure" /><!-- 结构 -->
+		<result property="address" column="pro_address" /><!-- 地址 -->
+		<result property="belong_dist" column="area" /><!-- 所属片区 -->
+		<result property="secu_monit" column="safe_check" /><!-- 安全受检 -->
+		<result property="monitor" column="check_user"/> <!-- 责任安监员 -->
+		<result property="checkuserStr" column="checkuserStr" /><!-- 责任安监员Str -->
+		<result property="extra_info" column="remark" /><!-- 备注 -->
+		<result property="tower" column="tower" /><!-- 塔吊 -->
+		<result property="mate_ele" column="mate_ele" /><!-- 物料提升机 -->
+		<result property="elevator" column="elevator" /><!-- 施工电梯 -->
+		<result property="manager" column="manager" /><!-- 项目经理 -->
+		<result property="constructor" column="constructor" /><!-- 施工员 -->
+		<result property="securitor" column="securitor" /><!-- 安全员 -->
+		<result property="machiner" column="machiner" /><!-- 机械员 -->
+
+
+		<!-- property:对应的属性名称; ofType：集合属性里的对象类型; select:被嵌套的查询语句ID; column:被嵌套的查询依赖的上一次查询结果集中的字段名 -->
+		<collection property="images" ofType="ProimageBean" column="id">
+			<!-- select="queryImageByProId" fetchType="eager"> -->
+			<id property="id" column="id" />
+			<result property="coursefile" column="coursefile" />
+			<result property="tupath" column="tupath" />
+		</collection>
+
+	</resultMap>
+<!-- 不带外键的ProjectBean -->
+	<resultMap type="ProjectBean" id="ProjectBeanMap2">
+		<id property="id" column="id" />
+		<result property="projectname" column="project_name" />
+		<result property="structure" column="structure" />
+		<result property="address" column="pro_address" />
+		<result property="belong_dist" column="area" />
+		<result property="secu_monit" column="safe_check" />
+		<result property="monitor" column="check_user" />
+		<result property="execute" column="con_factory" />
+		<result property="extra_info" column="remark" />
+	</resultMap>
+	<!--project表的查 -->
+	<!-- <select id="queryImageByProId" resultType="ProimageBean"> SELECT * 
+		FROM proimage where proid=#{id} </select> -->
+	<!-- 也没有map这样的Bean类 改为java.util.Map 根据除id外的元素查找 -->
+	<select id="queryByCondition" parameterType="java.util.Map"
+		resultMap="ProjectBeanMap2">
+		SELECT * FROM project
+		<where>
+			<if test="projectname != null and projectname!=''">
+				AND project_name = #{projectname}
+			</if>
+			<if test="address != null and address!=''">
+				AND pro_address = #{address}
+			</if>
+			<if test="monitor != null and monitor!=''">
+				AND check_user = #{monitor}
+			</if>
+			<if test="execute != null and execute!=''">
+				AND con_factory = #{execute}
+			</if>
+		</where>
+		<if test="offset != null  and limit != null ">
+			LIMIT ${offset},${limit}
+		</if>
+	</select>
+	<!-- 这两个有啥不同 -->
+	<!-- project表的查 根据id查找 -->
+	<select id="queryProjectById" parameterType="int" resultMap="ProjectBeanMap">
+		SELECT * FROM Project where id=#{id}
+	</select>
+	<!-- project表的查 resultMap元素：resultMap标签的id -->
+	<select id="queryById" resultMap="ProjectBeanMap" parameterType="int">
+		SELECT * FROM Project where id=#{id}
+	</select>
+
+
+	<!-- project表的删 根据id删除 -->
+	<delete id="delete" parameterType="int">
+		delete from Project where
+		id=#{id};
+	</delete>
+	<!-- project表查总数 -->
+	<!-- 这里你就知道用java.lang.Integer,上面你就不知道用java.util.Map 好笑 -->
+	<select id="queryCount" resultType="java.lang.Integer">
+		select count(*) from Project
+		<where>
+			<if test="projectname != null and projectname!=''">
+				AND project_name = #{projectname}
+			</if>
+			<if test="address != null and address!=''">
+				AND pro_address = #{address}
+			</if>
+			<if test="monitor != null and monitor!=''">
+				AND check_user = #{monitor}
+			</if>
+			<if test="execute != null and execute!=''">
+				AND con_factory = #{execute}
+			</if>
+		</where>
+	</select>
+
+	<!-- 所有元素 乱七八糟写 resultType跟resultMap不能同时存在。 -->
+	<!-- <select id="queryProject" resultType="java.util.List" resultMap="ProjectBeanMap"> 
+		SELECT * FROM Project </select> -->
+
+
+
+
+
+	<!-- project表修改，列对不上,而且没有parameterType形参 好了 -->
+	<update id="update" parameterType="ProjectBean">
+		update Project set
+		project_name=#{projectname},con_factory=#{execute},structure=#{structure},pro_address=#{address},
+		area=#{belong_dist},checkuserStr=#{checkuserStr},safe_check=#{secu_monit},remark=#{extra_info},tower=#{tower},mate_ele=#{mate_ele},
+		elevator=#{elevator},manager=#{manager},constructor=#{constructor},securitor=#{securitor},machiner=#{machiner}
+		where id =#{id}
+	</update>
+	<!-- project表的查 -->
+	<select id="queryProject" resultMap="ProjectBeanMap">
+		SELECT * FROM Project
+	</select>
+	<!-- project表的4个add -->
+	<insert id="addpro" parameterType="ProjectBean"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO Project
+		(project_name,structure,pro_address,area,safe_check,checkuserStr,con_factory,remark,tower,mate_ele,elevator,manager,constructor,securitor,machiner)
+		values
+		(#{projectname},#{structure},#{address},#{belong_dist},#{secu_monit},#{checkuserStr},#{execute},#{extra_info},#{tower},#{mate_ele},#{elevator},#{manager},#{constructor},#{securitor},#{machiner})
+	</insert>
+
+	<!-- <insert id="addpro" parameterType="ProjectBean" useGeneratedKeys="true" 
+		keyProperty="id"> INSERT INTO Project (project_name,structure,pro_address,area,safe_check) 
+		values (#{projectname},#{structure},#{address},#{belong_dist},#{secu_monit}) 
+		</insert> -->
+
+
+
+	<insert id="addmultiPro" parameterType="ProjectBean">
+		insert into project
+		(project_name,structure,pro_address,area,safe_check,check_user,con_factory,remark)
+		values
+		<foreach collection="list" item="item" separator="," index="index"
+			open="(" close=")">
+			(#{item.projectname},#{item.structure},#{item.address},#{item.belong_dist},#{item.secu_monit},#{item.monitor},#{item.execute},#{item.extra_info})
+		</foreach>
+	</insert>
+
+	<!-- <insert id="addmultiPro" parameterType="list"> insert into project 
+		(project_name,structure,pro_address,area,safe_check) values <foreach collection="list" 
+		item="item" separator="," index="index" open="(" close=")"> (#{item.projectname},#{item.structure},#{item.address},#{item.belong_dist},#{item.secu_monit}) 
+		</foreach> </insert> -->
+	<!-- proimage表的add -->
+	<insert id="savePhotoPath" parameterType="ProimageBean">
+		insert into proimage
+		(coursefile,tupath,proid) values
+		(#{courseFile},#{tuPath},#{proid})
+	</insert>
+	<!-- user表的查 -->
+	<select id="queryUserfoById" resultType="com.usc.user.bean.UserBean"
+		parameterType="int">
+		SELECT * FROM User where id=#{check_user}
+	</select>
+	<!-- con_factory表的查 -->
+	<select id="queryConfactoryById" resultType="com.usc.user.bean.ConfactoryBean"
+		parameterType="int">
+		SELECT * FROM con_factory where id=#{con_factoryId}
+	</select>
+</mapper>

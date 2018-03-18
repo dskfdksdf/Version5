@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.TowuseRecordMapper">
+<insert id="add" parameterType="TowuseRBean"  useGeneratedKeys="true" keyProperty="id">
+     insert into towuseR
+       (Rid,Rdevicetype,Rprojectid,Rproject,Restablish,Rconstruct,Rmanit,Rdismantleid,Rdismantle,Rrent,Rmonitest,Rcasenumber,
+             Rmonisituat,Rusesituat,Rdevicerun,Rmanufac,Rmanunumber,Rmanutime,Rinfotime,Rinstalltime,Rtesttime,Raccepttime,
+             Rcasetime,Rmatiantime,Rdismantime,Rremark,Rtime,Ruserid,Rusername)
+             VALUES
+             (#{Rid},#{Rdevicetype},#{Rprojectid},#{Rproject},#{Restablish},#{Rconstruct},#{Rmanit},#{Rdismantleid},#{Rdismantle},
+             #{Rrent},#{Rmonitest},#{Rcasenumber},#{Rmonisituat},#{Rusesituat},#{Rdevicerun},#{Rmanufac},#{Rmanunumber},
+             #{Rmanutime},#{Rinfotime},#{Rinstalltime},#{Rtesttime},#{Raccepttime},#{Rcasetime},#{Rmatiantime},#{Rdismantime},
+             #{Rremark},#{Rtime},#{Ruserid},#{Rusername})
+
+
+</insert>
+
+    <select id="query" resultType="TowuseRBean">
+        select * from towuseR
+    </select>
+    <select id="queryById" resultType="TowuseRBean" parameterType="java.lang.Integer">
+        select * from towuseR where Rid=#{Rid}
+    </select>
+</mapper>

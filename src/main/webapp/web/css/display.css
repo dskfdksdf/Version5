@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+/*新建制度样式*/
+/*整体 */
+html,body,.panel-default{  
+    height: 100%;  
+    background-color: #efefef;
+} 
+.panel{
+         margin-bottom: 20px
+}
+/*主面板 */
+#main{
+    margin:20px 100px;
+}
+.panel-success>.panel-heading {
+    color: #3c763d;
+    background-color: #85c5dd;
+    border-color: #ccc; 
+}
+.panel-success {
+     border-color: #ccc; 
+}
+/*退出链接 */
+#main .panel-heading #exit{
+    float: right;
+    color: black;;
+    margin-top: -10px;
+}
+ 
+#main .panel-body .title{
+    width: 100%;
+}
+ 
+/*按钮*/
+.announce-info .attachment .btn{
+    margin-left: 10px;
+    border:none;
+}
+
+#main .logo h3{
+    text-align: center;
+    color: #525252;
+}
+
+
+#main .CName{
+    float: right;
+    width: 40%;
+}
+
+/*分割线*/
+#main .horizontal {
+    height: 1px;
+    border: none;
+    margin:0px;
+    border-top: 1px solid #c0c0c0;
+}
+ 
+.content{
+    width: 90%;
+    margin: 10px 50px;
+    border: 1px solid #bfb9b9;
+    border-radius: 5px;
+}
+
+.announce-info .attachment{
+      width: 90%;
+      margin: 50px 50px;
+      
+}
+.announce-info .attachment span{
+      font-size: 18px;
+      color:black;
+      font-family: serif;
+}
+
+.announce-info .attachment .attachmentName{
+      color:#535353;
+       font-size: 15px;
+}
+.announce-info .operation{
+    width: 90%;
+    margin: 10px 50px;
+    text-align: center;
+}
+
+.announce-info .operation .btn-info{
+   margin-bottom: 20px;
+}

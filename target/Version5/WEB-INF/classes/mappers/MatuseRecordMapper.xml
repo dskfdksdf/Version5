@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.MatuseRecordMapper">
+    <insert id="add" parameterType="MatuseRBean"  useGeneratedKeys="true" keyProperty="id">
+        insert into matuseR
+        (Rid,Rdevicetype,Rprojectid,Rproject,Restablish,Rconstruct,Rmanit,Rdismantleid,Rdismantle,Rrent,Rmonitest,Rcasenumber,
+        Rmonisituat,Rusesituat,Rdevicerun,Rmanufac,Rmanunumber,Rmanutime,Rinfotime,Rinstalltime,Rtesttime,Raccepttime,
+        Rcasetime,Rmatiantime,Rdismantime,Rremark,Rtime,Ruserid,Rusername)
+        VALUES
+        (#{Rid},#{Rdevicetype},#{Rprojectid},#{Rproject},#{Restablish},#{Rconstruct},#{Rmanit},#{Rdismantleid},#{Rdismantle},
+        #{Rrent},#{Rmonitest},#{Rcasenumber},#{Rmonisituat},#{Rusesituat},#{Rdevicerun},#{Rmanufac},#{Rmanunumber},
+        #{Rmanutime},#{Rinfotime},#{Rinstalltime},#{Rtesttime},#{Raccepttime},#{Rcasetime},#{Rmatiantime},#{Rdismantime},
+        #{Rremark},#{Rtime},#{Ruserid},#{Rusername})
+
+
+    </insert>
+
+    <select id="query" resultType="MatuseRBean">
+        select * from matuseR
+    </select>
+    <select id="queryById" resultType="MatuseRBean" parameterType="java.lang.Integer">
+        select * from matuseR where Rid=#{Rid}
+    </select>
+
+
+</mapper>

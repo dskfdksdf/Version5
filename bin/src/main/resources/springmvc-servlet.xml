@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx  
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    <!-- 开启组件扫描 -->
+	<context:component-scan base-package="com.usc.user" />
+	
+	
+	<!-- 注册其他数据格式的处理器 -->
+	<mvc:annotation-driven />
+	<!-- 配置MVC视图解析器：把业务方法返回的逻辑视图名称解析为真正的物理视图
+		prefix + 逻辑视图名称 + suffix
+	 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/web/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 统一异常处理 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.RuntimeException">exception</prop>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+		  <!--  对静态资源文件的访问， Web应用服务器默认的Servlet名称是"default" -->
+    <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
+	<mvc:default-servlet-handler/>
+	
+	
+	  <!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <!-- 指定所上传文件的总大小不能超过10*1024*1024即10M......注意maxUploadSize属性的限制不是针对单个文件,而是所有文件的容量之和 -->  
+        <property name="maxUploadSize" value="10485760"/>
+	    <!-- 默认编码 -->
+	    <property name="defaultEncoding" value="UTF-8" />
+	    <!-- 上传文件的解析 -->
+	    <property name="resolveLazily" value="true" />
+
+    </bean>  
+</beans>

@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+/*查询制度样式*/
+/*整体 */
+html,body,.panel-default{  
+    background-color: #efefef;
+    height: 100%;  
+} 
+
+/*主面板 */
+#main{
+    margin:10px 50px;
+}
+
+.panel-success>.panel-heading {
+    color: #3c763d;
+    background-color:  #85c5dd;
+    border-color: gray;
+}
+.panel-success {
+     border-color: #ccc; 
+}
+/*退出链接 */
+#main .panel-heading #exit{
+    float: right;
+    color: black;
+    margin-top: -10px;
+}
+ 
+#main .panel-body .title{
+    width: 100%;
+}
+ 
+/* 查询按钮*/
+#main .panel-body .title .btn{
+    float:right;
+    margin-top: 10px;
+    margin-right: 450px;
+    border: 1px #d6e9c6 solid;
+}
+/*分割线*/
+#main .horizontal {
+    height: 1px;
+    border: none;
+    margin:10px auto 10px;
+    border-top: 1px solid #888080;
+}
+
+/*会议条件查询输入框*/
+#main .searchinputs{
+    width: 200px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 20px 0px;
+}
+/*表格*/
+#main  .table {
+        margin-bottom: 0px; 
+}
+
+#main strong{
+    font-size: 18px;margin-left:10px
+}
+
+
+/*表格标题*/
+#main .announce-info .heading{
+     text-align:center; /*设置水平居中*/
+      vertical-align:middle;/*设置垂直居中*/
+}
+ 
+ 
+#main .paging{
+	text-align: center;
+	margin: 5px auto;
+}

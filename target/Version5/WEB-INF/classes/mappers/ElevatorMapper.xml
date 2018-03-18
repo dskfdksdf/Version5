@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ElevatorMapper">
+    <select id="queryElevator" resultType="ElevatorBean">
+select * from elevator
+</select>
+    <update id="update" parameterType="ElevatorBean">
+        update elevator set
+        propright=#{propright},format=#{format},manunumber=#{manunumber},manufac=#{manufac},dutyman=#{dutyman},
+        machiner=#{machiner},phone=#{phone},casenumber=#{casenumber},manutime=#{manutime},efftime=#{efftime},
+        casetime=#{casetime},remark=#{remark},projectid=#{projectid} where id=#{id}
+
+    </update>
+    <update id="updateWeb" parameterType="ElevatorBean">
+        update elevator set
+        propright=#{propright},devicename=#{devicename},format=#{format},manunumber=#{manunumber},manufac=#{manufac},dutyman=#{dutyman},
+        machiner=#{machiner},phone=#{phone},casenumber=#{casenumber},manutime=#{manutime},efftime=#{efftime},
+        casetime=#{casetime},remark=#{remark},projectid=#{projectid} where id=#{id}
+
+    </update>
+
+
+
+    <update id="updatePart" parameterType="ElevatorBean">
+        update elevator SET
+        projectid=#{projectid} where id=#{id}
+    </update>
+
+    <select id="queryById" parameterType="ElevatorBean" resultType="ElevatorBean">
+        select *  from elevator where id=#{id}
+    </select>
+
+    <insert id="add" parameterType="ElevatorBean" useGeneratedKeys="true"
+            keyProperty="id">
+            insert into elevator
+           (propright,devicename,format,manunumber,manufac,dutyman,machiner,phone,casenumber,manutime,efftime,casetime,remark,time,userid,username,projectid)
+	VALUES
+	(#{propright},#{devicename},#{format},#{manunumber},#{manufac},#{dutyman},#{machiner},#{phone},#{casenumber},#{manutime},
+	#{efftime},#{casetime},#{remark},#{time},#{userid},#{username},#{projectid})
+
+    </insert>
+
+
+    <select id="queryByCondition" parameterType="java.util.Map"
+            resultType="ElevatorBean">
+        SELECT * FROM elevator
+        <where>
+            <if test="propright != null and propright!=''">
+                AND propright= #{propright}
+            </if>
+            <if test="manufac != null and manufac!=''">
+                AND manufac= #{manufac}
+            </if>
+            <if test="dutyman != null and dutyman!=''">
+                AND dutyman = #{dutyman}
+            </if>
+
+            <if test="remark != null and remark!=''">
+                AND remark = #{remark}
+            </if>
+        </where>
+        <if test="offset != null  and limit != null ">
+            LIMIT ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from elevator
+        <where>
+            <if test="propright != null and propright!=''">
+                AND propright = #{propright}
+            </if>
+            <if test="manufac != null and manufac!=''">
+                AND manufac = #{manufac}
+            </if>
+            <if test="dutyman != null and dutyman!=''">
+                AND dutyman = #{dutyman}
+            </if>
+            <if test="remark != null and remark!=''">
+                AND remark= #{remark}
+            </if>
+        </where>
+    </select>
+</mapper>

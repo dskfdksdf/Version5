@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ReformRecordMapper">  
+<select id="query" resultType="ReformRecordBean">
+select * from reform_inforecord
+</select>
+<insert id="add" parameterType="ReformRecordBean" useGeneratedKeys="true" keyProperty="reRid">
+insert into reform_inforecord
+(reRrezhenggaiid,reRreillpro,reRreillproStr,reRreweifaobject,reRreweifatiaokuan,reRrereformdesc,reRreilldate,
+reRrezhenggaidate,reRrestate,reRuserid,reRusername,reRdate)
+values
+(#{reRrezhenggaiid},#{reRreillpro},#{reRreillproStr},#{reRreweifaobject},#{reRreweifatiaokuan},#{reRrereformdesc},
+#{reRreilldate},#{reRrezhenggaidate},#{reRrestate},#{reRuserid},#{reRusername},#{reRdate}
+)
+</insert>
+</mapper>

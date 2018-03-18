@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.EnforceRecordMapper">
+    <insert id="add" parameterType="EnforceRecordBean" useGeneratedKeys="true"
+            keyProperty="enRid">
+        insert into enforce_inforecord
+        (enRenid,enRenreid,enRenproid,enRenzhenggaiid,enRenweifaobject,enRenweifatiaokuan,enRenweifaStr,enRenchufatiaokuan,
+        enRenchufaStr,enRuserid,enRusername,enRdate,enRenstate)
+        VALUES
+        (#{enRenid},#{enRenreid},#{enRenproid},#{enRenzhenggaiid},#{enRenweifaobject},#{enRenweifatiaokuan},
+        #{enRenweifaStr},#{enRenchufatiaokuan},#{enRenchufaStr},#{enRuserid},#{enRusername},#{enRdate},#{enRenstate})
+    </insert>
+
+    <select id="query" resultType="EnforceRecordBean">
+        select * from enforce_inforecord
+    </select>
+
+    <select id="queryById" resultType="EnforceRecordBean" parameterType="java.lang.Integer">
+        select * from enforce_inforecord where enRenid=#{enRenid}
+    </select>
+</mapper>

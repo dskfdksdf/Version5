@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.TowerRecordMapper">
+    <insert id="add" parameterType="TowRBean"  useGeneratedKeys="true" keyProperty="id">
+    insert into towR
+    (Rid,Rpropright,Rdevicename,Rformat,Rmanunumber,Rmanufac,Rdutyman,Rmachiner,Rphone,Rcasenumber,Rmanutime,
+    Refftime,Rcasetime,Rremark,Rtime,Ruserid,Rusername)
+    VALUES
+    (#{Rid},#{Rpropright},#{Rdevicename},#{Rformat},#{Rmanunumber},#{Rmanufac},#{Rdutyman},#{Rmachiner},#{Rphone},
+    #{Rcasenumber},#{Rmanutime},#{Refftime},#{Rcasetime},#{Rremark},#{Rtime},#{Ruserid},#{Rusername})
+
+    </insert>
+    <select id="query" resultType="TowRBean">
+        select * from towR
+    </select>
+    <select id="queryById" resultType="TowRBean" parameterType="java.lang.Integer">
+        select * from towR where Rid=#{Rid}
+    </select>
+</mapper>

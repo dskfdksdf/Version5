@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+/*新建制度样式*/
+/*整体 */
+html,body,.panel-default{  
+    height: 100%;  
+    background-color: #efefef;
+} 
+.panel{
+         margin-bottom: 20px
+}
+/*主面板 */
+#main{
+    margin:20px 100px;
+}
+.panel-success>.panel-heading {
+    color: #3c763d;
+    background-color: #85c5dd;
+    height: 50px;
+}
+.panel-success {
+     border-color: #ccc; 
+}
+/*退出链接 */
+#main .panel-heading #exit{
+    float: right;
+    color: black;;
+    margin-top: -10px;
+}
+
+ 
+#main .panel-body .title{
+    width: 100%;
+}
+/*分割线*/
+#main .horizontal {
+    height: 1px;
+    border: none;
+    margin:0px;
+    border-top: 1px solid #d3d1d1;
+}
+#main .announce-info .list{
+    margin-left: 68px;
+    margin-top: -33px;
+ }
+/*表格输入框*/
+#main .announce-info .fg{
+    width:100%;
+}
+ 
+#main .announce-info .form-control {
+    display:inherit;
+    width: 60%;
+}
+/*表格按钮*/
+#main .announce-info .b{
+    width:40%;
+    float:right;
+}
+#main .announce-info .btn1{
+    margin-top: -32px;
+     margin-left: 5px;
+}
+
+#main .announce-info .btn2{
+   margin-top: -32px;
+    margin-left: 60px;
+}
+
+#main .announce-info .btn3{
+    margin-top: -32px; 
+    margin-left: 115px;
+}
+#main .announce-info .btn4{
+   margin-top: -32px;
+    margin-left: 90px;
+    width:87px;
+}
+ 
+ /* 置顶复选框*/
+#main .announce-info #top{
+    margin-top: 25px;
+    line-height: normal;
+    width: 30px;
+}
+
+/* 设置文件上传input */
+.file {
+    margin-left: 30px;
+    margin-bottom: -15px;
+    position: relative;
+    display: inline-block;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 10px;
+    overflow: hidden;
+    color: black;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #eeeeee;
+    border-color: #adadad;
+    color: black;
+    text-decoration: none;
+}
+.attach{
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+/*表格*/
+#main .announce-info .table {
+        margin-bottom: 0px; 
+}
+
+/*表格标题*/
+#main .announce-info .heading{
+     text-align:center; /*设置水平居中*/
+      vertical-align:middle;/*设置垂直居中*/
+     
+}
+ 
+ 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ElevatoruseMapper">
+<select id="queryElevatoruse" resultType="ElevatoruseBean">
+select  *  from  elevatoruse
+</select>
+    <select id="queryById" parameterType="ElevatoruseBean" resultType="ElevatoruseBean">
+        select *  from elevatoruse where id=#{id}
+    </select>
+    <insert id="add" parameterType="ElevatoruseBean" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into elevatoruse
+        (devicetype,projectid,project,establish,construct,manit,dismantleid,dismantle,rent,monitest,casenumber,
+        monisituat,usesituat,devicerun,manufac,manunumber,manutime,infotime,installtime,testtime,accepttime,
+        casetime,matiantime,dismantime,remark,time,userid,username,deviceid)
+        VALUES
+        (#{devicetype},#{projectid},#{project},#{establish},#{construct},#{manit},#{dismantleid},#{dismantle},
+        #{rent},#{monitest},#{casenumber},#{monisituat},#{usesituat},#{devicerun},#{manufac},#{manunumber},
+        #{manutime},#{infotime},#{installtime},#{testtime},#{accepttime},#{casetime},#{matiantime},#{dismantime},
+        #{remark},#{time},#{userid},#{username},#{deviceid})
+
+    </insert>
+    <update id="update" parameterType="ElevatoruseBean">
+        update elevatoruse SET
+        devicetype=#{devicetype},projectid=#{projectid},project=#{project},establish=#{establish},construct=#{construct},
+        manit=#{manit},dismantleid=#{dismantleid},dismantle=#{dismantle},rent=#{rent},monitest=#{monitest},
+        casenumber=#{casenumber},monisituat=#{monisituat},usesituat=#{usesituat},devicerun=#{devicerun},
+        manufac=#{manufac},manunumber=#{manunumber},manutime=#{manutime},infotime=#{infotime},installtime=#{installtime},
+        testtime=#{testtime},accepttime=#{accepttime},casetime=#{casetime},matiantime=#{matiantime},dismantime=#{dismantime},
+        remark=#{remark},deviceid=#{deviceid} where id=#{id}
+    </update>
+
+    <update id="updateWeb" parameterType="ElevatoruseBean">
+        update elevatoruse SET
+        devicetype=#{devicetype},projectid=#{projectid},project=#{project},establish=#{establish},construct=#{construct},
+        manit=#{manit},dismantleid=#{dismantleid},dismantle=#{dismantle},rent=#{rent},monitest=#{monitest},
+        casenumber=#{casenumber},monisituat=#{monisituat},usesituat=#{usesituat},devicerun=#{devicerun},
+        manufac=#{manufac},manunumber=#{manunumber},manutime=#{manutime},infotime=#{infotime},installtime=#{installtime},
+        testtime=#{testtime},accepttime=#{accepttime},casetime=#{casetime},matiantime=#{matiantime},dismantime=#{dismantime},
+        remark=#{remark},deviceid=#{deviceid} where id=#{id}
+    </update>
+
+
+
+    <select id="queryByCondition" parameterType="java.util.Map"
+            resultType="ElevatoruseBean">
+        SELECT * FROM elevatoruse
+        <where>
+            <if test="project != null and project!=''">
+                AND project= #{project}
+            </if>
+            <if test="establish != null and establish!=''">
+                AND establish= #{establish}
+            </if>
+            <if test="manufac != null and manufac!=''">
+                AND manufac = #{manufac}
+            </if>
+
+            <if test="remark != null and remark!=''">
+                AND remark = #{remark}
+            </if>
+        </where>
+        <if test="offset != null  and limit != null ">
+            LIMIT ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from elevatoruse
+        <where>
+            <if test="project != null and project!=''">
+                AND project = #{project}
+            </if>
+            <if test="establish != null and establish!=''">
+                AND establish = #{establish}
+            </if>
+            <if test="manufac != null and manufac!=''">
+                AND manufac = #{manufac}
+            </if>
+            <if test="remark != null and remark!=''">
+                AND remark= #{remark}
+            </if>
+        </where>
+    </select>
+
+</mapper>

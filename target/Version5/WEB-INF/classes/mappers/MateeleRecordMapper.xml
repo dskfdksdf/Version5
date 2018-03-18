@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.MateeleRecordMapper">
+    <insert id="add" parameterType="MatRBean" useGeneratedKeys="true" keyProperty="id">
+
+         insert into matR
+             (Rid,Rpropright,Rdevicename,Rformat,Rmanunumber,Rmanufac,Rdutyman,Rmachiner,Rphone,Rcasenumber,Rmanutime,
+    Refftime,Rcasetime,Rremark,Rtime,Ruserid,Rusername)
+    VALUES
+    (#{Rid},#{Rpropright},#{Rdevicename},#{Rformat},#{Rmanunumber},#{Rmanufac},#{Rdutyman},#{Rmachiner},#{Rphone},
+    #{Rcasenumber},#{Rmanutime},#{Refftime},#{Rcasetime},#{Rremark},#{Rtime},#{Ruserid},#{Rusername})
+    </insert>
+
+    <select id="query" resultType="MatRBean">
+        select * from matR
+    </select>
+
+    <select id="queryById" resultType="MatRBean" parameterType="java.lang.Integer">
+        select * from matR where Rid=#{Rid}
+    </select>
+</mapper>

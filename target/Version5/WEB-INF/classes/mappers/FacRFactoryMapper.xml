@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.FacRFactoryMapper">
+    <insert id="add" parameterType="FacRFactoryBean" useGeneratedKeys="true" keyProperty="id">
+        insert into facRfactory
+        (facRid,facRfactoryname,facRstandperson,facRphone,facRgrade,facRnumber,facRmember,facRtime,facRuserid,facRusername,
+        facRcancel)
+        VALUES
+        (#{facRid},#{facRfactoryname},#{facRstandperson},#{facRphone},#{facRgrade},#{facRnumber},#{facRmember},
+        #{facRtime},#{facRuserid},#{facRusername},#{facRcancel})
+    </insert>
+    <select id="query" resultType="FacRFactoryBean">
+        select * from facRfactory
+    </select>
+    <select id="queryByid" resultType="FacRFactoryBean" parameterType="java.lang.Integer">
+        select * from facRfactory where facRid=#{facRid}
+    </select>
+
+</mapper>

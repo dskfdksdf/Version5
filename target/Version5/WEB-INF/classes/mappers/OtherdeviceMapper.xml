@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.OtherdeviceMapper">
+    <select id="queryOtherdevice" resultType="Otherdevice">
+		select * from otherdevice
+	</select>
+
+    <update id="update" parameterType="Otherdevice">
+		update otherdevice set
+		propright=#{propright},format=#{format},manunumber=#{manunumber},manufac=#{manufac},dutyman=#{dutyman},
+		machiner=#{machiner},phone=#{phone},casenumber=#{casenumber},manutime=#{manutime},efftime=#{efftime},
+		casetime=#{casetime},remark=#{remark},projectid=#{projectid} where id=#{id}
+
+	</update>
+
+
+    <insert id="add" parameterType="Otherdevice" useGeneratedKeys="true"
+            keyProperty="id">
+			insert into otherdevice
+			(propright,devicename,format,manunumber,manufac,dutyman,machiner,phone,casenumber,manutime,efftime,casetime,remark,
+			time,userid,username,projectid)
+	VALUES
+	(#{propright},#{devicename},#{format},#{manunumber},#{manufac},#{dutyman},#{machiner},#{phone},#{casenumber},#{manutime},
+	#{efftime},#{casetime},#{remark},#{time},#{userid},#{username},#{projectid})
+	</insert>
+
+
+    <select id="queryByCondition" parameterType="java.util.Map"
+            resultType="Otherdevice">
+        SELECT * FROM otherdevice
+        <where>
+            <if test="propright != null and propright!=''">
+                AND propright= #{propright}
+            </if>
+            <if test="manufac != null and manufac!=''">
+                AND manufac= #{manufac}
+            </if>
+            <if test="dutyman != null and dutyman!=''">
+                AND dutyman = #{dutyman}
+            </if>
+            <if test="remark != null and remark!=''">
+                AND remark = #{remark}
+            </if>
+        </where>
+        <if test="offset != null  and limit != null ">
+            LIMIT ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from otherdevice
+        <where>
+            <if test="propright != null and propright!=''">
+                AND propright = #{propright}
+            </if>
+            <if test="manufac != null and manufac!=''">
+                AND manufac = #{manufac}
+            </if>
+            <if test="dutyman != null and dutyman!=''">
+                AND dutyman = #{dutyman}
+            </if>
+            <if test="remark != null and remark!=''">
+                AND remark= #{remark}
+            </if>
+        </where>
+    </select>
+</mapper>

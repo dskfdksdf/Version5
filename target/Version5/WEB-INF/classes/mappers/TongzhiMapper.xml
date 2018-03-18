@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.TongzhiMapper">
+    <select id="query" resultType="TongzhiBean">
+        select * from inform_info
+    </select>
+<insert id="add" parameterType="TongzhiBean" useGeneratedKeys="true"
+        keyProperty="id">
+    insert into inform_info
+    (sender,senderStr,addressee,addresseeStr,time,content)
+    VALUES (#{sender},#{senderStr},#{addressee},#{addresseeStr},#{time},#{content})
+</insert>
+    <select id="queryByCondition" parameterType="java.util.Map"
+            resultType="TongzhiBean">
+        SELECT * FROM inform_info
+        <where>
+            <if test="senderStr != null and senderStr!=''">
+                AND senderStr= #{senderStr}
+            </if>
+            <if test="addresseeStr != null and addresseeStr!=''">
+                AND addresseeStr= #{addresseeStr}
+            </if>
+            <if test="time != null and time!=''">
+                AND time = #{time}
+            </if>
+
+            <if test="content != null and content!=''">
+                AND content = #{content}
+            </if>
+        </where>
+        <if test="offset != null  and limit != null ">
+            LIMIT ${offset},${limit}
+        </if>
+    </select>
+
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from inform_info
+        <where>
+            <if test="senderStr != null and senderStr!=''">
+                AND senderStr= #{senderStr}
+            </if>
+            <if test="addresseeStr != null and addresseeStr!=''">
+                AND addresseeStr = #{addresseeStr}
+            </if>
+            <if test="time != null and time!=''">
+                AND time= #{time}
+            </if>
+            <if test="content != null and content!=''">
+                AND content = #{content}
+            </if>
+        </where>
+    </select>
+</mapper>

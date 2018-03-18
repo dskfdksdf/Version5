@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.ReformMapper">
+<select id="query" resultType="ReformBean">
+select * from reform_info
+</select>
+<insert id="add" parameterType="ReformBean" useGeneratedKeys="true" keyProperty="reid">
+insert into reform_info 
+(rezhenggaiid,reillpro,reillproStr,reweifaobject,reweifatiaokuan,rereformdesc,reilldate,rezhenggaidate,restate,reuserid,reusername,redate)
+values
+(#{rezhenggaiid},#{reillpro},#{reillproStr},#{reweifaobject},#{reweifatiaokuan},#{rereformdesc},#{reilldate},#{rezhenggaidate},#{restate},
+#{reuserid},#{reusername},#{redate})
+</insert>
+<update id="addimage" parameterType="ReformBean"  >
+update reform_info set tupath=#{tupath} where reid=#{reid}
+</update>
+<update id="update1" parameterType="ReformBean">
+update reform_info set restate=#{restate},retongguodate=#{retongguodate} where reid=#{reid}
+</update>
+<update id="update2" parameterType="ReformBean">
+update reform_info set restate=#{restate},recarrydate=#{recarrydate} where reid=#{reid}
+</update>
+<update id="update3" parameterType="ReformBean">
+update reform_info set restate=#{restate} where reid=#{reid}
+</update>
+
+<update id="updateUrgent" parameterType="ReformBean">
+update reform_info set reurgent=#{reurgent} where reid=#{reid}
+</update>
+
+<select id="queryByCondition" parameterType="java.util.Map"
+		resultType="ReformBean">
+		SELECT * FROM reform_info
+		<where>
+			<if test="reid != null and reid!=''">
+				AND reid = #{reid}
+			</if>
+			<if test="rezhenggaiid != null and rezhenggaiid!=''">
+				AND rezhenggaiid = #{rezhenggaiid}
+			</if>
+			<if test="reurgent != null and reurgent!=''">
+				AND reurgent = #{reurgent}
+			</if>
+			<if test="reillproStr != null and reillproStr!=''">
+				AND reillproStr = #{reillproStr}
+			</if>
+			
+		</where>
+		<if test="offset != null  and limit != null ">
+			LIMIT ${offset},${limit}
+		</if>
+</select>
+
+<select id="queryCount" resultType="java.lang.Integer">
+		select count(*) from reform_info
+		<where>
+			<if test="reid != null and reid!=''">
+				AND reid = #{reid}
+			</if>
+			<if test="rezhenggaiid != null and rezhenggaiid!=''">
+				AND rezhenggaiid = #{rezhenggaiid}
+			</if>
+			<if test="reurgent != null and reurgent!=''">
+				AND reurgent = #{reurgent}
+			</if>
+			<if test="reillproStr != null and reillproStr!=''">
+				AND reillproStr = #{reillproStr}
+			</if>
+			
+		</where>
+	</select>
+
+</mapper>

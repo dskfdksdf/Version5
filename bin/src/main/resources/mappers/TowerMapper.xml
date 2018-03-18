@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.TowerMapper">
+	<resultMap type="TowerBean" id="TowerBeanMapper">
+		<id property="id" column="id" /><!-- 一个是服务器的bean,一个是mysql的列 -->
+		<result property="prop_right" column="prop_right"></result>
+		<result property="device_name" column="device_name"></result>
+		<result property="format" column="format"></result>
+		<result property="manu_number" column="manu_number"></result>
+		<result property="manu_fac" column="manu_fac"></result>
+		<result property="duty_man" column="duty_man"></result>
+		<result property="machiner" column="machiner"></result>
+		<result property="phone" column="phone"></result>
+		<result property="case_number" column="case_number"></result>
+		<result property="manu_time" column="manu_time"></result>
+		<result property="eff_time" column="eff_time"></result>
+		<result property="case_time" column="case_time"></result>
+		<result property="remark" column="remark"></result>
+	</resultMap>
+	<select id="queryTower" resultType="TowerBean"><!-- 这个id与TowerMapper接口中的方法同名 -->
+		select * from tower
+	</select>
+</mapper>

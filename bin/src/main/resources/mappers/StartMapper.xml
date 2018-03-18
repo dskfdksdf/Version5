@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.StartMapper">
+	<select id="query" resultType="StartBean">
+		select * from startcon_info
+	</select>
+	<insert id="add" parameterType="StartBean" useGeneratedKeys="true"
+		keyProperty="startid">
+		insert into startcon_info
+		(proname,pronameStr,starttime,time1,time2,monitorid,monitorStr,address,startdate)
+		values
+		(#{proname},#{pronameStr},#{starttime},#{time1},#{time2},#{monitorid},#{monitorStr},#{address},
+		#{startdate}
+		)
+	</insert>
+	<update id="update" parameterType="StartBean">
+		update startcon_info set agree=#{agree},vicebossid=#{vicebossid},
+		vicebossStr=#{vicebossStr},startdate1=#{startdate1}
+		where startid=#{startid}
+	</update>
+
+	<select id="queryByCondition" parameterType="java.util.Map"
+		resultType="StartBean">
+		SELECT * FROM startcon_info
+
+		<where>
+			<if test="pronameStr != null and pronameStr!=''">
+				AND pronameStr = #{pronameStr}
+			</if>
+			<if test="monitorStr != null and monitorStr!=''">
+				AND monitorStr = #{monitorStr}
+			</if>
+			<if test="vicebossStr != null and vicebossStr!=''">
+				AND vicebossStr = #{vicebossStr}
+			</if>
+			<if test="agree != null and agree!=''">
+				AND agree = #{agree}
+			</if>
+		</where>
+		<if test="offset != null  and limit != null ">
+			LIMIT ${offset},${limit}
+		</if>
+	</select>
+
+	<select id="queryCount" resultType="java.lang.Integer">
+		select count(*) from startcon_info
+		<where>
+			<if test="pronameStr != null and pronameStr!=''">
+				AND pronameStr = #{pronameStr}
+			</if>
+			<if test="monitorStr != null and monitorStr!=''">
+				AND monitorStr = #{monitorStr}
+			</if>
+			<if test="vicebossStr != null and vicebossStr!=''">
+				AND vicebossStr = #{vicebossStr}
+			</if>
+			<if test="agree != null and agree!=''">
+				AND agree = #{agree}
+			</if>
+		</where>
+	</select>
+
+</mapper>

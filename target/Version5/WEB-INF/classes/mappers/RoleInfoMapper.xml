@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usc.user.mapper.RoleInfoMapper">
+	<resultMap type="RoleInfoBean" id="RoleInfoMap">
+		<id property="roleId" column="id"/>
+		<result property="rolename" column="role_name"/>
+	</resultMap>
+
+
+	<select id="queryRoleInfoById" resultMap="RoleInfoMap" resultType="com.usc.user.bean.RoleInfoBean">
+		SELECT * FROM role_info WHERE id = #{id}
+	</select>
+	
+</mapper>
